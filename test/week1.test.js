@@ -11,11 +11,12 @@ const {
   simpleFizzBuzz
 } = require("../challenges/week1");
 
-describe.only("capitalize", () => {
+describe("capitalize", () => {
   test("returns a capitalized string", () => {
     expect(capitalize("hello")).toBe("Hello");
     expect(capitalize("the quick fox")).toBe("The quick fox");
     expect(capitalize("oh no, bears!!!")).toBe("Oh no, bears!!!");
+
   });
 
   test("does nothing if the string is already capitalized", () => {
@@ -29,7 +30,7 @@ describe("generateInitials", () => {
   });
 });
 
-describe("addVAT", () => {
+describe.only("addVAT", () => {
   test("adds a VAT of 20% to a price of 100", () => {
     expect(addVAT(100, 20)).toBe(120);
   });
@@ -45,6 +46,7 @@ describe("addVAT", () => {
   test("adds a VAT of 0% to a price of 25", () => {
     expect(addVAT(25, 0)).toBe(25);
   });
+  
 });
 
 describe("getSalePrice", () => {

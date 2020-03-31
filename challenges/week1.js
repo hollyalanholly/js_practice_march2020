@@ -1,11 +1,11 @@
 function capitalize(word) {
   if (word === undefined) throw new Error("word is required");
- let answer = word.charAt(0).toUpperCase();
- let remain =word.slice(1);
+//  My first attempt was
+//  let answer = word.charAt(0).toUpperCase();
+//  let remain =word.slice(1);
+//  return answer+remain;
 
- return answer+remain;
-  // Add your code here!
-}
+ return word.charAt(0).toUpperCase() + word.slice(1);}
 
 function generateInitials(firstName, lastName) {
   if (firstName === undefined) throw new Error("firstName is required");
@@ -16,7 +16,11 @@ function generateInitials(firstName, lastName) {
 function addVAT(originalPrice, vatRate) {
   if (originalPrice === undefined) throw new Error("originalPrice is requied");
   if (vatRate === undefined) throw new Error("vatRate is required");
-  // Add your code here!
+//Need to convert the vatRate to a % and also round the answer to 2.dp.
+//toFixed converts to string so added that+ to convert to number.
+  let unRounded =originalPrice*(1+(vatRate/100));
+  return +unRounded.toFixed(2);
+
 }
 
 function getSalePrice(originalPrice, reduction) {
