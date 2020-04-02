@@ -27,10 +27,12 @@ describe("capitalize", () => {
 describe("generateInitials", () => {
   test("returns the initials of a firstname and surname", () => {
     expect(generateInitials("Frederic", "Bonneville")).toBe("F.B");
+    expect(generateInitials("holly", "the Best")).toBe("H.T");
   });
 });
 
-describe.only("addVAT", () => {
+//done
+describe("addVAT", () => {
   test("adds a VAT of 20% to a price of 100", () => {
     expect(addVAT(100, 20)).toBe(120);
   });
@@ -49,6 +51,7 @@ describe.only("addVAT", () => {
   
 });
 
+//done
 describe("getSalePrice", () => {
   test("reduces a price of 100 by 50%", () => {
     expect(getSalePrice(100, 50)).toBe(50);
@@ -67,6 +70,7 @@ describe("getSalePrice", () => {
   });
 });
 
+//done
 describe("getMiddleCharacter", () => {
   test("returns the middle character from a string of odd length", () => {
     expect(getMiddleCharacter("bears!!!!")).toBe("s");
@@ -77,6 +81,7 @@ describe("getMiddleCharacter", () => {
   });
 });
 
+//done
 describe("reverseWord", () => {
   test("returns the provided word, reversed", () => {
     expect(reverseWord("foo")).toBe("oof");
@@ -89,6 +94,7 @@ describe("reverseWord", () => {
   });
 });
 
+//done
 describe("reverseAllWords", () => {
   test("reverses a single word in an array", () => {
     expect(reverseAllWords(["jest"])).toEqual(["tsej"]);
@@ -101,6 +107,7 @@ describe("reverseAllWords", () => {
   });
 });
 
+//done
 describe("countLinuxUsers", () => {
   test("returns 0 if no Linux users found", () => {
     const users = [
@@ -142,6 +149,10 @@ describe("simpleFizzBuzz", () => {
     expect(simpleFizzBuzz(3)).toBe("fizz");
   });
 
+  test("returns 'fizz' if the number is divisible by 3", () => {
+    expect(simpleFizzBuzz(12)).toBe("fizz");
+  });
+
   test("returns 'buzz' if the number is divisible by 5", () => {
     expect(simpleFizzBuzz(5)).toBe("buzz");
   });
@@ -152,5 +163,8 @@ describe("simpleFizzBuzz", () => {
 
   test("returns 'fizzbuzz' if the number is divisible by 3 and 5", () => {
     expect(simpleFizzBuzz(15)).toBe("fizzbuzz");
+  });
+  test("returns 'number' if the number is not divisible by 3 nor 5", () => {
+    expect(simpleFizzBuzz(15.5)).toBe(15.5);
   });
 });
