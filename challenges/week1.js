@@ -71,16 +71,15 @@ return (newWords);
 function countLinuxUsers(users) {
   if (users === undefined) throw new Error("users is required");
   // its an object with .type being what we need to count IF its is linux
-  //Maybe make linix all lowercase to be safe (I couldnt wuote figure out how to do that)
- 
+  //Maybe make linix all lowercase to be safe 
   let count =0;
-  users.forEach(function(person) {
-  if(person.type === ("Linux")) {
+  for (let i = 0; i < users.length; i++){
+  if(users[i].type.toLowerCase() === ("linux")) {
     count++;
   }
-  });
-  return count;
 }
+  return count;
+};
 
 function getMeanScore(scores) {
   if (scores === undefined) throw new Error("scores is required");

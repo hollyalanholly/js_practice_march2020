@@ -119,6 +119,16 @@ describe("countLinuxUsers", () => {
     expect(countLinuxUsers(users)).toBe(0);
   });
 
+  test("returns 1 Linux users found but linux in lower case", () => {
+    const users = [
+      { name: "Heather", OS: "Windows 8", type: "Windows" },
+      { name: "Paul", OS: "Firefox OS", type: "Unknown" },
+      { name: "Sheila", OS: "Windows 10", type: "Windows" },
+      { name: "Pedro", OS: "Windows 95", type: "linux" }
+    ];
+    expect(countLinuxUsers(users)).toBe(1);
+  });
+
   test("returns the correct number of Linux users found", () => {
     const users = [
       { name: "Heather", OS: "Ubuntu 18.04", type: "Linux" },
@@ -142,6 +152,14 @@ describe("getMeanScore", () => {
   test("returns the mean to 2 decimal places", () => {
     expect(getMeanScore([24, 44, 56, 11, 12, 17, 34])).toBe(28.29);
   });
+
+  test("0 returns the mean to 2 decimal places", () => {
+    expect(getMeanScore([0, 0])).toBe(0);
+  });
+
+  test("0 returns the mean to 2 decimal places", () => {
+    expect(getMeanScore([1.9, 1.756])).toBe(1.83);
+  });
 });
 
 describe("simpleFizzBuzz", () => {
@@ -161,9 +179,18 @@ describe("simpleFizzBuzz", () => {
     expect(simpleFizzBuzz(4)).toBe(4);
   });
 
+  test("returns 'buzz' if the number is divisible by 5", () => {
+    expect(simpleFizzBuzz(-5)).toBe("buzz");
+  });
+
   test("returns 'fizzbuzz' if the number is divisible by 3 and 5", () => {
     expect(simpleFizzBuzz(15)).toBe("fizzbuzz");
   });
+
+  test("returns 'fizzbuzz' if the number 0 is divisible by 3 and 5", () => {
+    expect(simpleFizzBuzz(0)).toBe("fizzbuzz");
+  });
+
   test("returns 'number' if the number is not divisible by 3 nor 5", () => {
     expect(simpleFizzBuzz(15.5)).toBe(15.5);
   });
