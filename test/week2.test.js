@@ -6,6 +6,7 @@ const {
   hasMPostCode
 } = require("../challenges/week2");
 
+//done
 describe("getFillings", () => {
   test("returns the fillings of a sandwich", () => {
     const sandwich = {
@@ -24,6 +25,7 @@ describe("getFillings", () => {
   });
 });
 
+//done and added some tests
 describe("isFromManchester", () => {
   test("returns true if the person is from Manchester", () => {
     const person = {
@@ -42,8 +44,28 @@ describe("isFromManchester", () => {
     };
     expect(isFromManchester(person)).toBe(false);
   });
+
+  test("returns true if the person is from Manchester", () => {
+    const person = {
+      name: "Ruby",
+      city: "manchester",
+      age: 4
+    };
+    expect(isFromManchester(person)).toBe(true);
+  });
+
+  test("returns true if the person is from Manchester", () => {
+    const person = {
+      name: "Jessa",
+      city: "mancHEster",
+      age: 1
+    };
+    expect(isFromManchester(person)).toBe(true);
+  });
+
 });
 
+//DONE
 describe("getBusNumbers", () => {
   // A bus can hold 40 people. This function should return how many buses are required for the number of people
   test("returns 1 if all the people fit in 1 bus", () => {
@@ -71,8 +93,15 @@ describe("getBusNumbers", () => {
   test("returns the correct number of buses for larger numbers of people", () => {
     expect(getBusNumbers(43728)).toBe(1094);
   });
+
+  //added some tests 
+  test("returns the correct number of buses for even if some words are in there", () => {
+    expect(getBusNumbers(87+" people")).toBe(3);
+    expect(getBusNumbers("87 people")).toBe(3);
+  });
 });
 
+//done
 describe("countSheep", () => {
   test("returns 0 if there are 0 sheep in the array", () => {
     const arr = ["dog", "badger", "dog", "dog", "chicken"];
@@ -102,6 +131,11 @@ describe("countSheep", () => {
       "sheep"
     ];
     expect(countSheep(arr)).toBe(5);
+  });
+//added a test for case
+  test("returns 2 if there are 2 sheep in the array", () => {
+    const arr = ["dog", "Sheep", "dog", "sheep", "chicken"];
+    expect(countSheep(arr)).toBe(2);
   });
 });
 
