@@ -79,7 +79,7 @@ function countLinuxUsers(users) {
   }
 }
   return count;
-};
+}
 
 function getMeanScore(scores) {
   if (scores === undefined) throw new Error("scores is required");
