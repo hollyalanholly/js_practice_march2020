@@ -23,6 +23,10 @@ describe("camelCaseWords", () => {
       "isHigherThanMinNumber"
     );
   });
+
+  test("camel cases two words (i.e. second word is capitalized)", () => {
+    expect(camelCaseWords(["My", "HOlly", "Test"])).toBe("myHollyTest");
+  });
 });
 
 describe("getSquares", () => {
@@ -44,6 +48,7 @@ describe("getSquares", () => {
   });
 });
 
+//DONE
 describe("getTotalSubjects", () => {
   test("returns 0 if no people have subjects", () => {
     const people = [

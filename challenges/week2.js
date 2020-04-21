@@ -8,7 +8,7 @@ function getFillings(sandwich) {
 function isFromManchester(person) {
   if (person === undefined) throw new Error("person is required");
   // Need to make all lowercase
-  if(person.city.toLowerCase()==="manchester") {
+  if (person.city.toLowerCase() === "manchester") {
     return true;
   }
   return false;
@@ -21,7 +21,7 @@ function getBusNumbers(people) {
   //NEEDS TO BE A CEILING AS IF 41 PEOPLE YOU WOULD NEED 2 BUSSES
   //NEEDS TO BE INTEGER
   //put parse float in incase some text is in there too
- return Math.ceil((parseFloat(people))/40);
+  return Math.ceil((parseFloat(people)) / 40);
 }
 
 //DONE
@@ -33,10 +33,10 @@ function countSheep(arr) {
   //change to all lowercase
   let words = arr.map(v => v.toLowerCase());
 
-  let count=0;
+  let count = 0;
   words.forEach(function (animal) {
-    if(animal==="sheep")
-    count++;
+    if (animal === "sheep")
+      count++;
   });
   return count;
 }
@@ -44,9 +44,9 @@ function countSheep(arr) {
 function hasMPostCode(person) {
   if (person === undefined) throw new Error("person is required");
   // needs to look at first letter on postcode so an INDEX of [0]
-  if(isNaN(person.address.postCode[1])===true) {return false;}
-  else if(person.address.postCode[0] ==="M") {return true;}
-  else {return false;}
+  if (isNaN(person.address.postCode[1]) === true) { return false; }
+  else if (person.address.postCode[0] === "M") { return true; }
+  else { return false; }
 }
 
 module.exports = {
