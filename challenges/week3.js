@@ -49,7 +49,7 @@ function camelCaseWords(words) {
   return count;
   }
 
-  //working
+  //DONE
   function checkIngredients(menu, ingredient) {
     if (menu === undefined) throw new Error("menu is required");
     if (!ingredient) throw new Error("ingredient is required");
@@ -72,7 +72,14 @@ function camelCaseWords(words) {
   function duplicateNumbers(arr1, arr2) {
     if (arr1 === undefined) throw new Error("arr1 is required");
     if (arr2 === undefined) throw new Error("arr2 is required");
-    // Your code here!
+ 
+//makes a new array of only duplicated numbers
+const overLap = arr1.filter(element => arr2.includes(element));
+// This is a new thing in Es6 which returns values only once
+const uniqueSet = new Set(overLap.sort());
+// this is going into this new set, going through each bit and making it back into an array.
+const finalArr = [...uniqueSet];
+return finalArr;
   }
 
   module.exports = {
