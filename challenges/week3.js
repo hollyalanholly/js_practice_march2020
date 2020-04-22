@@ -17,7 +17,6 @@ function getSquares(nums) {
 function camelCaseWords(words) {
   if (words === undefined) throw new Error("words is required");
   // Loop into the array and make everything lower case incase there are any weird things in the tests.
-
   let secondArr = [];
   for (let i = 1; i < words.length; i++) {
     secondArr.push(words[i].charAt(0).toUpperCase() + words[i].substring(1).toLowerCase());
@@ -25,11 +24,9 @@ function camelCaseWords(words) {
   let newArr = [];
   newArr.push(words[0].toLowerCase() + secondArr);
 
-  
   for (let i = 0; i < newArr.length; i++) {
     return newArr[i].replace(/,/g, '');
   }
-  
 }
 
 //DONE
@@ -52,11 +49,25 @@ function camelCaseWords(words) {
   return count;
   }
 
+  //working
   function checkIngredients(menu, ingredient) {
     if (menu === undefined) throw new Error("menu is required");
     if (!ingredient) throw new Error("ingredient is required");
-    // Your code here!
+    //This is an array of objects so went into each array and pulled out the INGREDIENTS.
+    let ingredientsArr =[];
+    for (let i=0; i<menu.length;i++) {
+    ingredientsArr.push(menu[i].ingredients);}
+    // joined it all into one string
+    let string =ingredientsArr.join();
+    //searching for the ingredient
+    if(string.includes(ingredient)) {
+      return true;
+    }
+    else {
+      return false;  
+    }
   }
+  
 
   function duplicateNumbers(arr1, arr2) {
     if (arr1 === undefined) throw new Error("arr1 is required");
