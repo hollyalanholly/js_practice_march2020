@@ -1,34 +1,70 @@
+//DONE FIRST TIME!!
 function findSmallNums(nums) {
   if (!nums) throw new Error("nums is required");
-  // Your code here
+  // maybe do a filter.  to pull out only numbers smaller than 1.
+  let littleNumbers = nums.filter((number) => number < 1);
+  return littleNumbers;
 }
 
+//DONE FIRST TIME!!
 function findNamesBeginningWith(names, char) {
   if (!names) throw new Error("names is required");
   if (!char) throw new Error("char is required");
-  // Your code here
+  // Do a filter
+  //Use charactersAt
+  let filteredNames = names.filter((newName) => newName.charAt(0) === char);
+  return filteredNames;
 }
 
+//DONE
 function findVerbs(words) {
   if (!words) throw new Error("words is required");
-  // Your code here
+  //Need to pull out characters at position 0,1 and 2 beacsue 2 will be a space!!
+  let filteredWords = words.filter((word) => word.substring(0, 3) === "to ");
+  return filteredWords;
 }
 
+//DONE 
 function getIntegers(nums) {
   if (!nums) throw new Error("nums is required");
-  // Your code here
+  // we did this in prog fun 004
+  // const filtered = nums.filter((number) => number % parseInt(number) === 0);
+  // return filtered;
+
+  //tried a new method as did not want to do the same as last time
+  const filtered2 = nums.filter((num) => Number.isInteger(num));
+  return filtered2;
 }
 
+//done
 function getCities(users) {
   if (!users) throw new Error("users is required");
-  // Your code here
-}
+  // its objects within objects so keep drilling down with ........'s
+  //loop into each object 
+  let subjectArr =[];
+  for (let i=0; i<users.length;i++){
+    subjectArr.push(users[i].data.city.displayName);
+  }
+  
+  return subjectArr;
 
+}
+//done 
 function getSquareRoots(nums) {
   if (!nums) throw new Error("nums is required");
-  // Your code here
-}
+  // maybe a .map
+  //googled to find Math.sqrt(value)
+  //do a Maths.round to 2 dp
+  //had to parse float as it was converting to a string.  Parse float took back to a number.
 
+  function sqRootNumbers (num) {
+    return parseFloat(Math.sqrt(num).toFixed(2));
+}
+const mapSqRootNumbers = nums.map(sqRootNumbers);
+return mapSqRootNumbers;
+  }
+  
+  
 function findSentencesContaining(sentences, str) {
   if (!sentences) throw new Error("sentences is required");
   if (!str) throw new Error("str is required");
