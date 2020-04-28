@@ -41,11 +41,11 @@ function getCities(users) {
   if (!users) throw new Error("users is required");
   // its objects within objects so keep drilling down with ........'s
   //loop into each object 
-  let subjectArr =[];
-  for (let i=0; i<users.length;i++){
+  let subjectArr = [];
+  for (let i = 0; i < users.length; i++) {
     subjectArr.push(users[i].data.city.displayName);
   }
-  
+
   return subjectArr;
 
 }
@@ -57,23 +57,43 @@ function getSquareRoots(nums) {
   //do a Maths.round to 2 dp
   //had to parse float as it was converting to a string.  Parse float took back to a number.
 
-  function sqRootNumbers (num) {
+  function sqRootNumbers(num) {
     return parseFloat(Math.sqrt(num).toFixed(2));
-}
-const mapSqRootNumbers = nums.map(sqRootNumbers);
-return mapSqRootNumbers;
   }
-  
-  
+  const mapSqRootNumbers = nums.map(sqRootNumbers);
+  return mapSqRootNumbers;
+}
+
+//done
 function findSentencesContaining(sentences, str) {
   if (!sentences) throw new Error("sentences is required");
   if (!str) throw new Error("str is required");
-  // Your code here
+  // ORIGINAL PLAN FELL DOWN as turning all to lowercase was a bad plan.
+  //Do a map to get everything to lower case
+  //   function lower(sentence){
+  //     return sentence.toLowerCase();
+  // }
+  // const sentencesMap = sentences.map(lower);
+  // //filtered out the sentences containg the specifies string
+  // const filtered = sentencesMap.filter((sentence) => sentence.includes(str));
+
+  // //now need to take the first letter of the sentence and make it capital.
+  // function firstUpper(filter){
+  //   return (filter[0].toUpperCase())+(filter.substring(1));
+  // }
+  // const firstUpperMap = filtered.map(firstUpper);
+  // return firstUpperMap;
+  const filtered = sentences.filter((sentence) => sentence.toLowerCase().includes(str));
+  return filtered;
 }
 
 function getLongestSides(triangles) {
   if (!triangles) throw new Error("triangles is required");
-  // Your code here
+  function findBiggest(tri) {
+    return parseFloat(Math.max(...tri));
+  }
+  const mapBiggest = triangles.map(findBiggest);
+  return mapBiggest;
 }
 
 module.exports = {
