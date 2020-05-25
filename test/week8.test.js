@@ -8,8 +8,9 @@ const {
   getWordFrequencies
 } = require("../challenges/week8");
 
+//done
 describe("findNextNumber", () => {
-  test("returns the next number after the given number in the array", () => {
+    test("returns the next number after the given number in the array", () => {
     expect(findNextNumber([5, 3, 7, 8, 1, 10], 7)).toBe(8);
     expect(findNextNumber([5, 3, 7, 8, 1, 10], 1)).toBe(10);
     expect(findNextNumber([4, 22, 654, 123, 65, 23, 40, 1], 22)).toBe(654);
@@ -28,6 +29,7 @@ describe("findNextNumber", () => {
   });
 });
 
+//DONE
 describe("count1sand0s", () => {
   test("returns an object with the count of 1s and 0s in a string", () => {
     expect(count1sand0s("11000")).toEqual({
@@ -35,7 +37,7 @@ describe("count1sand0s", () => {
       0: 3
     });
 
-    expect(count1sand0s("0101010111")).toEqual({
+    expect(count1sand0s("1111110000")).toEqual({
       1: 6,
       0: 4
     });
@@ -52,7 +54,8 @@ describe("count1sand0s", () => {
   });
 });
 
-describe("reverseNumber", () => {
+//doing
+describe.only("reverseNumber", () => {
   test("reverses the digits of a number", () => {
     expect(reverseNumber(5)).toBe(5);
     expect(reverseNumber(104)).toBe(401);
