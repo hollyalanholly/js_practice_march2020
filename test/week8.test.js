@@ -54,8 +54,8 @@ describe("count1sand0s", () => {
   });
 });
 
-//doing
-describe.only("reverseNumber", () => {
+//done
+describe("reverseNumber", () => {
   test("reverses the digits of a number", () => {
     expect(reverseNumber(5)).toBe(5);
     expect(reverseNumber(104)).toBe(401);
@@ -64,6 +64,7 @@ describe.only("reverseNumber", () => {
   });
 });
 
+//done
 describe("sumArrays", () => {
   test("returns the total of the numbers in all sub arrays", () => {
     const arrs = [[1, 2, 3], [6, 3, 1], [1], [9, 10], [3, 5]];
@@ -71,6 +72,7 @@ describe("sumArrays", () => {
   });
 });
 
+//donw
 describe("arrShift", () => {
   test("returns an array with the first and last items swapped", () => {
     expect(arrShift([1, 2])).toEqual([2, 1]);
@@ -84,6 +86,7 @@ describe("arrShift", () => {
   });
 });
 
+//done
 describe("findNeedle", () => {
   test("returns true if any of the properties of an object contain the specified string", () => {
     const obj1 = {
@@ -142,7 +145,7 @@ describe("findNeedle", () => {
   });
 });
 
-describe("getWordFrequencies", () => {
+describe.only("getWordFrequencies", () => {
   test("returns the frequencies of each word in a string", () => {
     expect(getWordFrequencies("hello world")).toEqual({
       hello: 1,

@@ -31,7 +31,7 @@ const count1sand0s = str => {
   return frequenciesFinal;
 };
 
-//DOING
+//DONE
 const reverseNumber = n => {
   if (n === undefined) throw new Error("n is required");
   // reverse number with a map and reverse function
@@ -40,25 +40,59 @@ const reverseNumber = n => {
   return parseInt(n.toString().split("").reverse().join(""))
 };
 
+//DONE
 const sumArrays = arrs => {
   if (arrs === undefined) throw new Error("arrs is required");
-  // Your code here!
+  //add up each set of numbers in an array and push into new array
+  //then add the new array up
+  let newArr = [];
+  arrs.forEach(element => newArr.push(element.reduce((a, b) => a + b, 0)));
+  return newArr.reduce((a, b) => a + b, 0)
 };
 
+//DONE
 const arrShift = arr => {
   if (arr === undefined) throw new Error("arr is required");
-  // Your code here!
+  if (arr.length < 2) {
+    return arr;
+  } else {
+    let middleArr = [];
+    for (let i = 1; i < (arr.length) - 1; i++) {
+      middleArr.push(arr[i])
+    };
+
+    middleArr.unshift(arr[(arr.length) - 1]);
+    middleArr.push(arr[0]);
+    return middleArr;
+  }
 };
 
+//done
 const findNeedle = (haystack, searchTerm) => {
   if (haystack === undefined) throw new Error("haystack is required");
   if (searchTerm === undefined) throw new Error("searchTerm is required");
-  // Your code here!
+  // maybe make one giant string of obkect values and turn it to lowercase and search the lowecase term in it
+  return (Object.values(haystack).join().toLowerCase()).includes(searchTerm.toLowerCase());
 };
 
+//doing
 const getWordFrequencies = str => {
   if (str === undefined) throw new Error("str is required");
-  // Your code here!
+
+  //making an array of the words in the string
+  const words = str.toLowerCase().split(' ');
+  //make the tally chart from the new const words
+  const frequencies = {};
+  for (let i = 0; i < words.length; i++) {
+    const char = words[i];
+    if (frequencies[char] === undefined) {
+      frequencies[char] = 1;
+    } else {
+      frequencies[char] += 1;
+    }
+  }
+
+  return frequencies;
 };
 
 module.exports = {
