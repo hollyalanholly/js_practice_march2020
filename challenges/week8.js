@@ -80,7 +80,7 @@ const getWordFrequencies = str => {
   if (str === undefined) throw new Error("str is required");
 
   //making an array of the words in the string
-  const words = str.toLowerCase().split(' ');
+  const words = str.toLowerCase().replace(/[.,\/#!?$%\^&\*;:{}=\-_`~()]/g,"").split(' ');
   //make the tally chart from the new const words
   const frequencies = {};
   for (let i = 0; i < words.length; i++) {
