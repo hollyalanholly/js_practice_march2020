@@ -88,8 +88,8 @@ const getComplementaryDNA = str => {
 const isItPrime = n => {
   if (n === undefined) throw new Error("n is required");
 
-  if (n === 0 || n === 1 || n % 2 === 0 || n % 3 === 0 || n % 5 === 0 || n % 7 === 0 || n % 11 === 0) { return false }
-  else if (n === 2 || n === 3 || n === 5 || n === 7 || n === 11) { return true; }
+  if (n === 2 || n === 3 || n === 5 || n === 7 || n === 11) { return true; }
+  else if (n === 0 || n === 1 || n % 2 === 0 || n % 3 === 0 || n % 5 === 0 || n % 7 === 0 || n % 11 === 0) { return false }
   else { return true };
 };
 

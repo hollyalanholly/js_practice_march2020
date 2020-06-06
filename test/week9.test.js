@@ -94,6 +94,9 @@ describe("isItPrime", () => {
         expect(isItPrime(121)).toBe(false);
         expect(isItPrime(0)).toBe(false);
         expect(isItPrime(997)).toBe(true);
+        expect(isItPrime(2)).toBe(true);
+        expect(isItPrime(3)).toBe(true);
+        expect(isItPrime(31)).toBe(true);
     });
 });
 
