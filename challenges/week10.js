@@ -1,14 +1,39 @@
-/**
+/**DONE
  * This function takes a number, e.g. 123 and returns the sum of all its digits, e.g 6 in this example.
  * @param {Number} n
  */
 const sumDigits = n => {
   if (n === undefined) throw new Error("n is required");
+  //convert to string and then into an array
+  const arr = n.toString().split("");
+  //if the number is a negative need to treat first number as -ve.
+  let negativeArrStart = [];
+  negativeArrStart.push(arr[0].concat(arr[1]))
+  let negativeArrEnd = [];
+  for (let i = 2; i < arr.length; i++) {
+    negativeArrEnd.push(arr[i]);
+  }
+  //taking the start of the negative array and looping theough the END of the -ve array and making a new array.
+  negativeArrStart.push(...negativeArrEnd);
+  //make a total, so we can loop through either the negative array or the positive array
+  let total = 0;
+  if (arr[0] === "-") {
+    negativeArrStart.forEach(n => total += parseInt(n))
+    return total;
+  }
+  else {
+    arr.forEach(n => total += parseInt(n))
+    return total;
+  }
 };
 
 /**
- * This function creates a range of numbers as an array. It received a start, an end and a step. Step is the gap between numbers in the range. For example, if start = 3, end = 11 and step = 2 the resulting range would be: [3, 5, 7, 9, 11]
- * Both the start and the end numbers are inclusive.
+ * This function creates a range of numbers as an array. It received a start, an end and a step. 
+ * Step is the gap between numbers in the range. For example, if start = 3, end = 11 and step = 2 
+ * the resulting range would be: [3, 5, 7, 9, 11]
+ * Both the start and the end numbers are inclusive WHAT DOES THIS MEAN?! 
+ * like if end was 12 should it be [3,5,7,9,11,12]??. 
+ * or does it mean only but start and end numbers in that can be included in the new array?  I will work on THIS.
  * Step is an optional parameter. If it is not provided, assume the step is 1.
  * @param {Number} start
  * @param {Number} end
@@ -17,6 +42,32 @@ const sumDigits = n => {
 const createRange = (start, end, step) => {
   if (start === undefined) throw new Error("start is required");
   if (end === undefined) throw new Error("end is required");
+
+  let fakeStep=1;
+let arr=[];
+
+if(step===0) {
+  for(let i=start; i<=end; i +=fakeStep) {
+  arr.push(i);
+}
+return arr;
+}
+
+else if(step==="") {
+  for(let i=start; i<=end; i +=fakeStep) {
+  arr.push(i);
+}
+return arr;
+}
+
+else {
+for(let i=start; i<=end; i +=step) {
+  arr.push(i);
+}
+return arr;
+}
+
+};
 };
 
 /**
