@@ -40,19 +40,15 @@ const sumDigits = n => {
  * @param {Number} step
  */
 const createRange = (start, end, step) => {
-  if (start === undefined && end === undefined) throw new Error ("start and end required");
+  if (start === undefined && end === undefined) throw new Error("start and end required");
   if (start === undefined) throw new Error("start is required");
   if (end === undefined) throw new Error("end is required");
+  if (step <= 0) throw new Error("step required >0");
 
   let fakeStep = 1;
   let arr = [];
-  if (step === 0) {
-    for (let i = start; i <= end; i += fakeStep) {
-      arr.push(i);
-    }
-    return arr;
-  }
-  else if (step === "") {
+
+  if (step === "" || step === undefined) {
     for (let i = start; i <= end; i += fakeStep) {
       arr.push(i);
     }
@@ -102,9 +98,12 @@ const getScreentimeAlertList = (users, date) => {
 };
 
 /**
- * This function will receive a hexadecimal color code in the format #FF1133. A hexadecimal code is a number written in hexadecimal notation, i.e. base 16. If you want to know more about hexadecimal notation:
+ * This function will receive a hexadecimal color code in the format #FF1133. 
+ * A hexadecimal code is a number written in hexadecimal notation, i.e. base 16. 
+ * If you want to know more about hexadecimal notation:
  * https://www.youtube.com/watch?v=u_atXp-NF6w
- * For colour codes, the first 2 chars (FF in this case) represent the amount of red, the next 2 chars (11) represent the amound of green, and the last 2 chars (33) represent the amount of blue.
+ * For colour codes, the first 2 chars (FF in this case) represent the amount of red, 
+ * the next 2 chars (11) represent the amound of green, and the last 2 chars (33) represent the amount of blue.
  * Colours can also be represented in RGB format, using decimal notation.
  * This function should transform the hex code into an RGB code in the format:
  * "rgb(255,17,51)"
@@ -116,17 +115,36 @@ const hexToRGB = hexStr => {
 };
 
 /**
- * This function takes a noughts and crosses board represented as an array, where an empty space is represented with null.
+ * This function takes a noughts and crosses board represented as an array, where an empty space is 
+ * represented with null.
  * [
  *  ["X", "0", null],
  *  ["X", null, "0"],
  *  ["X", null, "0"]
  * ]
- * The function should return "X" if player X has won, "0" if the player 0 has won, and null if there is currently no winner.
+ * The function should return "X" if player X has won, "0" if the player 0 has won, 
+ * and null if there is currently no winner.
  * @param {Array} board
  */
 const findWinner = board => {
   if (board === undefined) throw new Error("board is required");
+//make the array or arrays into one array
+  let arr = [];
+  for (var i = 0; i < board.length; i++) {
+    for (var j = 0; j < board[i].length; j++) {
+
+      arr.push(board[i][j]);
+    }
+  }
+
+  if (arr[0] === arr[3] && arr[0] === arr[6] && arr[0] === "X" || arr[1] === arr[4] && arr[1] === arr[7] && arr[1] === "X" || arr[2] === arr[5] && arr[2] === arr[8] && arr[2] === "X" || arr[0] === arr[1] && arr[0] === arr[2] && arr[0] === "X" || arr[3] === arr[4] && arr[3] === arr[5] && arr[3] === "X" || arr[6] === arr[7] && arr[6] === arr[8] && arr[6] === "X") {
+    return "X";
+  }
+
+  else if (arr[0] === arr[3] && arr[0] === arr[6] && arr[0] === "0" || arr[1] === arr[4] && arr[1] === arr[7] && arr[1] === "0" || arr[2] === arr[5] && arr[2] === arr[8] && arr[2] === "0" || arr[0] === arr[1] && arr[0] === arr[2] && arr[0] === "0" || arr[3] === arr[4] && arr[3] === arr[5] && arr[3] === "0" || arr[6] === arr[7] && arr[6] === arr[8] && arr[6] === "0") {
+    return "0";
+  }
+  else { return null; }
 };
 
 module.exports = {
