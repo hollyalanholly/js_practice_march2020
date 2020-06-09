@@ -40,35 +40,32 @@ const sumDigits = n => {
  * @param {Number} step
  */
 const createRange = (start, end, step) => {
+  if (start === undefined && end === undefined) throw new Error ("start and end required");
   if (start === undefined) throw new Error("start is required");
   if (end === undefined) throw new Error("end is required");
 
-  let fakeStep=1;
-let arr=[];
-
-if(step===0) {
-  for(let i=start; i<=end; i +=fakeStep) {
-  arr.push(i);
-}
-return arr;
-}
-
-else if(step==="") {
-  for(let i=start; i<=end; i +=fakeStep) {
-  arr.push(i);
-}
-return arr;
-}
-
-else {
-for(let i=start; i<=end; i +=step) {
-  arr.push(i);
-}
-return arr;
-}
-
+  let fakeStep = 1;
+  let arr = [];
+  if (step === 0) {
+    for (let i = start; i <= end; i += fakeStep) {
+      arr.push(i);
+    }
+    return arr;
+  }
+  else if (step === "") {
+    for (let i = start; i <= end; i += fakeStep) {
+      arr.push(i);
+    }
+    return arr;
+  }
+  else {
+    for (let i = start; i <= end; i += step) {
+      arr.push(i);
+    }
+    return arr;
+  }
 };
-};
+
 
 /**
  * This function takes an array of user objects and their usage in minutes of various applications. The format of the data should be as follows:
