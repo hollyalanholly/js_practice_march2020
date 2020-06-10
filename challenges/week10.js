@@ -48,7 +48,7 @@ const createRange = (start, end, step) => {
   let fakeStep = 1;
   let arr = [];
 
-  if (step === "" || step === undefined) {
+  if (step === undefined) {
     for (let i = start; i <= end; i += fakeStep) {
       arr.push(i);
     }
@@ -128,20 +128,27 @@ const hexToRGB = hexStr => {
  */
 const findWinner = board => {
   if (board === undefined) throw new Error("board is required");
-//make the array or arrays into one array
-  let arr = [];
+  //make the array or arrays into one array
+  let newArr = [];
   for (var i = 0; i < board.length; i++) {
     for (var j = 0; j < board[i].length; j++) {
 
-      arr.push(board[i][j]);
+      newArr.push(board[i][j]);
     }
   }
-
+  //making everything uppercase (didnt work with null so had to get rid of that)
+  let string = newArr.toString(",").toUpperCase();
+  arr = string.split(",");
   if (arr[0] === arr[3] && arr[0] === arr[6] && arr[0] === "X" || arr[1] === arr[4] && arr[1] === arr[7] && arr[1] === "X" || arr[2] === arr[5] && arr[2] === arr[8] && arr[2] === "X" || arr[0] === arr[1] && arr[0] === arr[2] && arr[0] === "X" || arr[3] === arr[4] && arr[3] === arr[5] && arr[3] === "X" || arr[6] === arr[7] && arr[6] === arr[8] && arr[6] === "X") {
     return "X";
   }
-
   else if (arr[0] === arr[3] && arr[0] === arr[6] && arr[0] === "0" || arr[1] === arr[4] && arr[1] === arr[7] && arr[1] === "0" || arr[2] === arr[5] && arr[2] === arr[8] && arr[2] === "0" || arr[0] === arr[1] && arr[0] === arr[2] && arr[0] === "0" || arr[3] === arr[4] && arr[3] === arr[5] && arr[3] === "0" || arr[6] === arr[7] && arr[6] === arr[8] && arr[6] === "0") {
+    return "0";
+  }
+  else if (arr[0] === arr[4] && arr[0] === arr[8] && arr[0] === "X" || arr[2] === arr[4] && arr[2] === arr[6] && arr[2] === "X") {
+    return "X";
+  }
+  else if (arr[0] === arr[4] && arr[0] === arr[8] && arr[0] === "0" || arr[2] === arr[4] && arr[2] === arr[6] && arr[2] === "0") {
     return "0";
   }
   else { return null; }

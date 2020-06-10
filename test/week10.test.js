@@ -59,7 +59,7 @@ describe("sumDigits", () => {
         test("it throws an error if step is <0", () => {
             expect(() => {
                 createRange(2, 10, -2);
-            }).toThrow("end required >=0");
+            }).toThrow("step required >0");
         });
 
         it("it returns an array which starts with START and increases by STEP and does not exceed END", () => {
@@ -81,15 +81,81 @@ describe("sumDigits", () => {
         });
 
         it("if no step specified it returns an array which starts with START and increases by STEP of 1 and does not exceed END", () => {
-            const result = createRange(3, 9, "");
-            const expected = [3, 4, 5, 6, 7, 8, 9];
-            expect(result).toEqual(expected);
-
             const result2 = createRange(3, 9, undefined);
             const expected2 = [3, 4, 5, 6, 7, 8, 9];
             expect(result2).toEqual(expected2);
         });
     });
+
+    describe("findWinner", () => {
+
+        test("it throws an error if not passed a board", () => {
+            expect(() => {
+                findWinner();
+            }).toThrow("board is required");
+        });
+
+        it("it returns X if X has three in arow, 0 i 0 has three in a row or null if no winners", () => {
+            const result = findWinner([
+                ["X", "0", null],
+                ["X", null, "0"],
+                ["X", null, "0"]
+            ]);
+            const expected = "X";
+            expect(result).toEqual(expected);
+
+            const result2 = findWinner([
+                ["0", "0", null],
+                ["X", null, "0"],
+                ["X", null, "0"]
+            ]);
+            const expected2 = null;
+            expect(result2).toEqual(expected2);
+        
+            const result3 = findWinner([
+                ["0", "0", "0"],
+                ["X", "X", "0"],
+                ["X", null, "X"]
+            ]);
+            const expected3 = "0";
+            expect(result3).toEqual(expected3);
+        
+            const result4 = findWinner([
+                 ["X", "0", "0"],
+                ["0", "X", "0"],
+                ["X", null, "X"]
+            ]);
+            const expected4 = "X";
+            expect(result4).toEqual(expected4);
+
+            const result5 = findWinner([
+                ["0", "0", "X"],
+               ["0", "X", "0"],
+               ["X", null, "X"]
+           ]);
+           const expected5 = "X";
+           expect(result5).toEqual(expected5);
+
+           const result6 = findWinner([
+            ["0", null, "X"],
+           ["X", "0", "0"],
+           ["X", null, "0"]
+       ]);
+       const expected6 = "0";
+       expect(result6).toEqual(expected6);
+        });   
+
+        it("it returns X if X has three in arow, 0 i 0 has three in a row or null if no winners regardless of case", () => {
+            const result = findWinner([
+                ["x", "0", null],
+                ["x", null, "0"],
+                ["X", null, "0"]
+            ]);
+            const expected = "X";
+            expect(result).toEqual(expected);
+        });
+    });
+
 });
 
 
