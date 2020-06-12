@@ -26,15 +26,11 @@ const sumDigits = n => {
     return total;
   }
 };
-
 /**
  * This function creates a range of numbers as an array. It received a start, an end and a step. 
  * Step is the gap between numbers in the range. For example, if start = 3, end = 11 and step = 2 
  * the resulting range would be: [3, 5, 7, 9, 11]
- * Both the start and the end numbers are inclusive WHAT DOES THIS MEAN?! 
- * like if end was 12 should it be [3,5,7,9,11,12]??. 
- * or does it mean only but start and end numbers in that can be included in the new array?  I will work on THIS.
- * Step is an optional parameter. If it is not provided, assume the step is 1.
+ * Both the start and the end numbers are inclusive.
  * @param {Number} start
  * @param {Number} end
  * @param {Number} step
@@ -44,24 +40,25 @@ const createRange = (start, end, step) => {
   if (start === undefined) throw new Error("start is required");
   if (end === undefined) throw new Error("end is required");
   if (step <= 0) throw new Error("step required >0");
-
   let fakeStep = 1;
+  let arrayLengthFake =(end-start)/fakeStep;
+  let arrayLength= (end-start)/step;
   let arr = [];
+//Other people used step === undefined ? step = 1 : 0.  
 
-  if (step === undefined) {
+  if(step!== undefined && !Number.isInteger(arrayLength)) 
+    throw new Error("the end number has to be able to be included in the range, change end number");
+  
+  if (step === undefined && Number.isInteger(arrayLengthFake)) {
     for (let i = start; i <= end; i += fakeStep) {
-      arr.push(i);
-    }
-    return arr;
+      arr.push(i);}return arr;
   }
+
   else {
     for (let i = start; i <= end; i += step) {
-      arr.push(i);
-    }
-    return arr;
-  }
+      arr.push(i);}
+    return arr;}
 };
-
 
 /**
  * This function takes an array of user objects and their usage in minutes of various applications. 
@@ -132,9 +129,60 @@ const getScreentimeAlertList = (users, dates) => {
  * "rgb(255,17,51)"
  * Hint: You will need to convert each hexadecimal value for R, G and B into its decimal equivalent!
  * @param {String} str
+ *  //split to array
+  //loop through array if sees # push rgb( into new array
+  //if a push 10, b push 11 etc
+  //else push number
+  //[r,g,b,(,15,15,1,1,3,3)]
+  // go into the new array and start at position 4.
+  //thenmaybe do a map so if the position is even each number is transformed (arr[i]*16) but if position is odd (arr[i]*1)
+  //this new array shoulf be [240, 15, 16, 1, 48, 3]
+  //then filter or reduce  so position 0 and position 1 are added the position 2 and 3 then position 4 and 5
+  //[255,17,51]
+  //join to a string including a comma
+  //concat that string with a join on the first array position 0-3 =rgb( + 255,17,51 and push a ) on the end.
  */
-const hexToRGB = hexStr => {
-  if (hexStr === undefined) throw new Error("hexStr is required");
+const hexToRGB = hex => {
+  if (hex === undefined) throw new Error("hex STRING is required");
+  if (hex[0]!=="#") throw new Error("has to start with #");
+  if(/^#[0-9A-F]{6}$/i.test(hex.toUpperCase())===false) throw new Error("has to be a valid hexidecimal colour code");
+
+  hexArr = (hex.toUpperCase().slice(1, (hex.length+1))).split("");
+  const convertStepOne = char => {
+    if(char==="F"){return 15}
+    else if(char==="E"){return 14}
+    else if(char==="D"){return 13}
+    else if(char==="C"){return 12}
+    else if(char==="B"){return 11}
+    else if(char==="A"){return 10}
+    else {return parseInt(char,10);}
+  }
+  let conversionStepOneMap = hexArr.map(convertStepOne);
+
+  const convertStepTwo = (char, index) => {
+    for(var t = 0; t < conversionStepOneMap.length; t++) {
+      if(index % 2 === 0) {return char*16}
+      else{return char*1}
+  }}
+
+  let conversionStepTwoMap = conversionStepOneMap.map(convertStepTwo);
+
+  var groups = [];
+  for(var i = 0; i < conversionStepTwoMap.length; i += 2) {
+    groups.push(conversionStepTwoMap.slice(i, i + 2));
+  }
+
+  let conversionStepThreeArr=[];
+    for (let i=0; i<groups.length; i++) {
+// console.log(groups[i].reduce((a, b) => a + b, 0)) couldnt get a reduce to work :()
+      sum=0;
+      for(j=0; j<groups[i].length; j++) {
+        sum = sum + groups[i][j];
+      }
+      conversionStepThreeArr.push(sum);
+    }
+let finalString = "rgb("+conversionStepThreeArr.join()+")";
+return finalString;
 };
 
 /**DONE

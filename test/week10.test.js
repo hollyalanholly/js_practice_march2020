@@ -62,6 +62,12 @@ describe("sumDigits", () => {
             }).toThrow("step required >0");
         });
 
+        test("it throws an error if end can not be included in the range", () => {
+            expect(() => {
+                createRange(2, 10, 3);
+            }).toThrow("the end number has to be able to be included in the range, change end number");
+        });
+
         it("it returns an array which starts with START and increases by STEP and does not exceed END", () => {
             const result = createRange(2, 10, 2);
             const expected = [2, 4, 6, 8, 10];
@@ -75,9 +81,15 @@ describe("sumDigits", () => {
             const expected3 = [0, 7, 14, 21];
             expect(result3).toEqual(expected3);
 
-            const result4 = createRange(0, 20, 3);
-            const expected4 = [0, 3, 6, 9, 12, 15, 18];
+            const result4 = createRange(0.5, 4.5, 2);
+            const expected4 = [0.5, 2.5, 4.5];
             expect(result4).toEqual(expected4);
+            
+            const result5 = createRange(0.5, 5.5, 2.5);
+            const expected5 = [0.5, 3, 5.5];
+            expect(result5).toEqual(expected5);
+
+            
         });
 
         it("if no step specified it returns an array which starts with START and increases by STEP of 1 and does not exceed END", () => {
@@ -200,6 +212,37 @@ describe("sumDigits", () => {
             ]);
             const expected = "X";
             expect(result).toEqual(expected);
+        });
+    });
+
+    describe("hexToRGB", () => {
+
+        test("it throws an error if not passed a string", () => {
+            expect(() => {
+                hexToRGB();
+            }).toThrow("hex STRING is required");
+        });
+
+        test("it throws an error if the first character in teh string is not #", () => {
+            expect(() => {
+                hexToRGB("FF1133");
+            }).toThrow("has to start with #");
+        });
+
+        test("it throws an error if hex is NOT a valid hexidecimal colour code", () => {
+            expect(() => {
+                hexToRGB("#FF1Z33");
+            }).toThrow("has to be a valid hexidecimal colour code");
+        });
+
+        test("iit converts a hexadecimal color code into its decimal equivalent!", () => {
+            expect(hexToRGB("#FF1133")).toBe("rgb(255,17,51)");
+            expect(hexToRGB("#437700")).toBe("rgb(67,119,0)");
+        });
+
+        test("iit converts a hexadecimal color code into its decimal equivalent regardless of case e.g. capitals and lowercase", () => {
+            expect(hexToRGB("#258b40")).toBe("rgb(37,139,64)");
+            expect(hexToRGB("#384eA6")).toBe("rgb(56,78,166)");
         });
     });
 
