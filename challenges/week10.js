@@ -183,6 +183,19 @@ const hexToRGB = hex => {
     }
 let finalString = "rgb("+conversionStepThreeArr.join()+")";
 return finalString;
+
+//I found something on 15th june which is way cleverer!!
+// function hexStringToRGBMORE(hex) {
+//   return [
+//     parseInt(hex.slice(1,3), 16),
+//     parseInt(hex.slice(3,5), 16),
+//     parseInt(hex.slice(5,7), 16)
+//   ];  
+// }
+
+// let arrAgain ="rgb("+hexStringToRGBMORE("#Ff1133").join()+")";
+
+// console.log(arrAgain);
 };
 
 /**DONE
